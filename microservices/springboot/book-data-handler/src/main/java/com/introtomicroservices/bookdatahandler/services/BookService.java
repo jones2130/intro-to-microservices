@@ -1,10 +1,13 @@
 package com.introtomicroservices.bookdatahandler.services;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.introtomicroservices.bookdatahandler.exceptions.BookNotFoundException;
 import com.introtomicroservices.bookdatahandler.exceptions.BookNotProvidedException;
+import com.introtomicroservices.bookdatahandler.forms.BookForm;
 import com.introtomicroservices.bookdatahandler.models.Book;
 import com.introtomicroservices.bookdatahandler.repositories.BookRepository;
 
@@ -20,38 +23,42 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Book create(Book book) throws BookNotProvidedException {
-        if(book == null) {
+    public Book create(BookForm form) throws BookNotProvidedException {
+        if(form == null) {
             throw new BookNotProvidedException();
         }
+
+        Book book = new Book();
+        
+        book.setId(UUID.randomUUID().toString());
+        book.setTitle(form.getTitle());
+        book.setAuthor(form.getAuthor());
+        book.setDescription(form.getDescription());
 
         return repository.save(book);
     }
 
     @Override
-    public Book update(String id, Book book) throws BookNotFoundException, BookNotProvidedException {
-        if(book == null) {
+    public Book update(String id, BookForm form) throws BookNotFoundException, BookNotProvidedException {
+        if(form == null) {
             throw new BookNotProvidedException();
         }
 
         return repository.findById(id)
-            .map((Book updatedBook) -> {
-                updatedBook.setTitle(book.getTitle());
-                updatedBook.setAuthor(book.getAuthor());
-                updatedBook.setDescription(book.getDescription());
+            .map((Book book) -> {
+                book.setTitle(form.getTitle());
+                book.setAuthor(form.getAuthor());
+                book.setDescription(form.getDescription());
 
-                return repository.save(updatedBook);
+                return repository.save(book);
             })
             .orElseThrow(() -> new BookNotFoundException());
     }
 
     @Override
     public void delete(String id) throws BookNotFoundException {
-         repository.findById(id)
-            .map((Book book) -> {
-                repository.delete(book);
-                return null;
-            })
+         Book book = repository.findById(id)
             .orElseThrow(() -> new BookNotFoundException());
+        repository.delete(book);
     }
 }

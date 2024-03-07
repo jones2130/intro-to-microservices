@@ -1,4 +1,4 @@
-package com.introtomicroservices.bookdatahandler;
+package com.introtomicroservices.bookdatahandler.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
