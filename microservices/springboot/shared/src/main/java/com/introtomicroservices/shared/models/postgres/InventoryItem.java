@@ -1,4 +1,4 @@
-package com.introtomicroservices.inventory.models;
+package com.introtomicroservices.shared.models.postgres;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.introtomicroservices.inventory.models;
+package com.introtomicroservices.shared.models.postgres;
 
 import java.util.Date;
 import java.util.List;

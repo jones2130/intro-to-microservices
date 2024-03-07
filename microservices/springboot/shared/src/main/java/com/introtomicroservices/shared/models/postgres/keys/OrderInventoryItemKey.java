@@ -1,9 +1,9 @@
-package com.introtomicroservices.inventory.models.keys;
+package com.introtomicroservices.shared.models.postgres.keys;
 
 import java.io.Serializable;
 
-import com.introtomicroservices.inventory.models.InventoryItem;
-import com.introtomicroservices.inventory.models.Order;
+import com.introtomicroservices.shared.models.postgres.InventoryItem;
+import com.introtomicroservices.shared.models.postgres.Order;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +19,7 @@ public class OrderInventoryItemKey implements Serializable {
     @JoinColumn(name="itemid", nullable = false)
     private InventoryItem inventoryItem;
 
-    public Order getOrder() {
+    public com.introtomicroservices.shared.models.postgres.Order getOrder() {
         return order;
     }
 

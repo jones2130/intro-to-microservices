@@ -1,4 +1,4 @@
-package com.introtomicroservices.bookdatahandler.models;
+package com.introtomicroservices.shared.models.mongodb;
 
 public class Book {
     private String id;

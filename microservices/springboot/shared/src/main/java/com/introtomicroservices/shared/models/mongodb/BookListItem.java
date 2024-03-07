@@ -1,4 +1,4 @@
-package com.introtomicroservices.search.models;
+package com.introtomicroservices.shared.models.mongodb;
 
 public class BookListItem {
     private String id;

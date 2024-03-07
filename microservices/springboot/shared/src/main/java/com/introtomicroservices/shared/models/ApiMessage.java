@@ -1,4 +1,4 @@
-package com.introtomicroservices.inventory.models;
+package com.introtomicroservices.shared.models;
 
 public class ApiMessage {
     private String message;

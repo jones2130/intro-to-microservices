@@ -1,6 +1,6 @@
-package com.introtomicroservices.inventory.models;
+package com.introtomicroservices.shared.models.postgres;
 
-import com.introtomicroservices.inventory.models.keys.OrderInventoryItemKey;
+import com.introtomicroservices.shared.models.postgres.keys.OrderInventoryItemKey;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
