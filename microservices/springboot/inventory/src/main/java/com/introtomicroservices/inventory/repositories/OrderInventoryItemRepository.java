@@ -6,9 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.introtomicroservices.inventory.models.OrderInventoryItem;
-import com.introtomicroservices.inventory.models.keys.OrderInventoryItemKey;
+import com.introtomicroservices.shared.models.postgres.OrderInventoryItem;
+import com.introtomicroservices.shared.models.postgres.keys.OrderInventoryItemKey;
 
+/**
+ * @author jjones
+ */
 @Repository
 public interface OrderInventoryItemRepository extends JpaRepository<OrderInventoryItem, OrderInventoryItemKey>{
     @Query("select oii from OrderInventoryItem oii where oii.key.order.orderId = :orderId")

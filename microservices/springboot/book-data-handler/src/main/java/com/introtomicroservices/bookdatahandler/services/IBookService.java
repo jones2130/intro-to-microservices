@@ -3,8 +3,11 @@ package com.introtomicroservices.bookdatahandler.services;
 import com.introtomicroservices.bookdatahandler.exceptions.BookNotFoundException;
 import com.introtomicroservices.bookdatahandler.exceptions.BookNotProvidedException;
 import com.introtomicroservices.bookdatahandler.forms.BookForm;
-import com.introtomicroservices.bookdatahandler.models.Book;
+import com.introtomicroservices.shared.models.mongodb.Book;
 
+/**
+ * @author jjones
+ */
 public interface IBookService {
     public Book getById(String id) throws BookNotFoundException;
     public Book create(BookForm book) throws BookNotProvidedException;

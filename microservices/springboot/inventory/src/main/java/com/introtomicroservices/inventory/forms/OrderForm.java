@@ -2,6 +2,9 @@ package com.introtomicroservices.inventory.forms;
 
 import java.util.List;
 
+/**
+ * @author jjones
+ */
 public class OrderForm {
     private String notes;
     private List<OrderItem> items;

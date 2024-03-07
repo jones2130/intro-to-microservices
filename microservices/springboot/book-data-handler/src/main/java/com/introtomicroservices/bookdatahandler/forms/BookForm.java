@@ -1,5 +1,8 @@
 package com.introtomicroservices.bookdatahandler.forms;
 
+/**
+ * @author jjones
+ */
 public class BookForm {
     private String title;
     private String author;

@@ -7,8 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.introtomicroservices.search.models.Book;
+import com.introtomicroservices.shared.models.mongodb.Book;
 
+/**
+ * @author jjones
+ */
 public interface BookRepository extends MongoRepository<Book, String>{
     public static final String TEXT_SEARCH_QUERY = "{ $or: ["+
     "{'title': {$regex:?0,$options:'i'}}, "+
