@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: test1234
+      MONGO_INITDB_DATABASE: bookstore
+  postgresql:
+    image: postgres:16.2
+    restart: always
+    environment:
+      POSTGRES_DB: bookstore
+      POSTGRES_USER: testuser
+      POSTGRES_PASSWORD: test1234
+      POSTGRES_ROOT_PASSWORD: root1234
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
