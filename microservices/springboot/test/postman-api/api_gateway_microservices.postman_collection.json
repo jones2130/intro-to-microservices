@@ -1,0 +1,278 @@
+{
+	"info": {
+		"name": "API Gateway Microservices",
+		"_postman_id": "91d6432a-03a6-8c22-3d45-f07cd58adccc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Book Data Handler",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Book Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Mr. Murder\",\n\t\"author\": \"Dean Koontz\",\n\t\"description\": \"Dude's clone kills people\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/book/data",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"data"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book Data By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/book/data/{{bookId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"data",
+								"{{bookId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book Data By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Bad Place\",\n\t\"author\": \"Dean Koontz\",\n\t\"description\": \"Guy with four balls stabs the fuck out of people\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/book/data/{{bookId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"data",
+								"{{bookId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book Data By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/book/data/{{bookId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"data",
+								"{{bookId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"description": "",
+			"item": [
+				{
+					"name": "Search for Book Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/search?search=dean",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "dean",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"description": "",
+			"item": [
+				{
+					"name": "Create Inventory Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"notes\": \"Example order\",\n\t\"items\": [{\n\t\t\"bookId\": \"THISISATEST\",\n\t\t\"quantity\": 10\n\t}]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/inventory/order",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory",
+								"order"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "List Inventory Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/inventory/order/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory",
+								"order",
+								"list"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/inventory/order/{{orderId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory",
+								"order",
+								"{{orderId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Order Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/inventory/order/{{orderId}}/items",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory",
+								"order",
+								"{{orderId}}",
+								"items"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Inventory Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8080/inventory/order/{{orderId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"inventory",
+								"order",
+								"{{orderId}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
