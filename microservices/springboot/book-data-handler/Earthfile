@@ -1,0 +1,19 @@
+VERSION 0.8
+
+compile:
+    FROM ../shared+build-shared
+
+    RUN mkdir -p /opt/introtomicroservices/bookdatahandler
+    COPY . /opt/introtomicroservices/bookdatahandler
+
+    WORKDIR /opt/introtomicroservices/bookdatahandler
+
+    RUN mvn clean package
+    RUN cp ./target/book-data-handler-0.0.1-SNAPSHOT.jar ./target/app.jar
+    SAVE ARTIFACT ./target/app.jar AS LOCAL target/app.jar
+
+docker:
+    FROM openjdk:17-alpine
+    COPY +compile/app.jar . 
+    ENTRYPOINT ["java","-jar","app.jar"]
+    SAVE IMAGE book-data-handler-microservice:latest
