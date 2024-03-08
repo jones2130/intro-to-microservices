@@ -1,8 +1,6 @@
 services:
   mongodb:
     image: mongodb/mongodb-community-server:6.0-ubi8
-    ports:
-      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: test1234
@@ -15,7 +13,35 @@ services:
       POSTGRES_USER: testuser
       POSTGRES_PASSWORD: test1234
       POSTGRES_ROOT_PASSWORD: root1234
-    ports:
-      - 5432:5432
     volumes:
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+  bookdatahandler:
+    image: book-data-handler-microservice:latest
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      MONGO_HOST: mongodb
+      MONGO_DB: bookstore
+      MONGO_ADMIN_USER: admin
+      MONGO_ADMIN_PASS: test1234
+  search:
+    image: search-microservice:latest
+    restart: always
+    ports:
+      - 8081:8080
+    environment:
+      MONGO_HOST: mongodb
+      MONGO_DB: bookstore
+      MONGO_ADMIN_USER: admin
+      MONGO_ADMIN_PASS: test1234
+  inventory:
+    image: inventory-microservice:latest
+    restart: always
+    ports:
+      - 8082:8080
+    environment:
+      POSTGRE_HOST: postgresql
+      POSTGRE_DB: bookstore
+      POSTGRE_USER: testuser
+      POSTGRE_PASS: test1234
