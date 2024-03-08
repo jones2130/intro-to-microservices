@@ -1,0 +1,19 @@
+VERSION 0.8
+
+build-shared:
+    FROM openjdk:17-alpine
+    
+    RUN apk add curl tar gzip
+
+    RUN mkdir -p /opt/introtomicroservices/shared
+    RUN mkdir -p /usr/share/maven /usr/share/maven/ref
+    RUN curl -o /tmp/apache-maven.tar.gz https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+    RUN tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 
+    RUN rm -f /tmp/apache-maven.tar.gz 
+    RUN ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+
+    ENV MAVEN_HOME /usr/share/maven
+    COPY . /opt/introtomicroservices/shared
+    WORKDIR /opt/introtomicroservices/shared
+
+    RUN mvn clean install
